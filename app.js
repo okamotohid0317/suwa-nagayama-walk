@@ -1,7 +1,7 @@
 'use strict';
 const $=id=>document.getElementById(id), rad=Math.PI/180, maxLat=85.05112878;
-let spots=[],selected=null,center={lat:35.6295,lng:139.449},zoom=15,current=null,watch=null,playing=null,spoken=new Set(),mapEpoch=0,cartoKey='';
-try{cartoKey=sessionStorage.getItem('suwa-public-carto-key')||''}catch{}$('cartoKey').value=cartoKey;
+let spots=[],selected=null,center={lat:35.6295,lng:139.449},zoom=15,current=null,watch=null,playing=null,spoken=new Set(),mapEpoch=0,cartoKey='cb1_4qhj_1_793023108b37f1ae0edb335e';
+$('cartoKey').value=cartoKey;
 const say=t=>{$('status').textContent=t};
 function world(lat,lng,z){lat=Math.max(-maxLat,Math.min(maxLat,lat));let n=256*2**z;return{x:(lng+180)/360*n,y:(1-Math.log(Math.tan(lat*rad)+1/Math.cos(lat*rad))/Math.PI)/2*n}}
 function latlng(x,y,z){let n=256*2**z;return{lng:x/n*360-180,lat:Math.atan(Math.sinh(Math.PI*(1-2*y/n)))/rad}}
